@@ -6,7 +6,6 @@ The architecture centralizes security inspection using **AWS Network Firewall** 
 
 Incoming internet traffic is protected by **Amazon CloudFront** and **AWS WAF**, then forwarded to an **Internet-facing Application Load Balancer (ALB)**. The traffic is inspected by **AWS Network Firewall**, routed through **Transit Gateway**, forwarded to an **Internal Network Load Balancer (NLB)**, and finally distributed across EC2 instances running inside an **Auto Scaling Group**.
 
-# AWS Secure Hub-and-Spoke Architecture
 
 # AWS Secure Hub-and-Spoke Architecture
 
@@ -42,34 +41,7 @@ The entire infrastructure is deployed using Infrastructure as Code except for tw
 
 ```
 
-Internet Users
-│
-▼
-Amazon CloudFront
-│
-▼
-AWS WAF
-│
-▼
-Internet Gateway
-│
-▼
-Application Load Balancer (ALB)
-│
-▼
-AWS Network Firewall
-│
-▼
-AWS Transit Gateway
-│
-▼
-Internal Network Load Balancer (NLB)
-│
-▼
-Auto Scaling Group
-├───────────────┐
-│               │
-EC2             EC2
+![AWS Secure Hub-and-Spoke Architecture](architecture.png)
 
 ```
 
