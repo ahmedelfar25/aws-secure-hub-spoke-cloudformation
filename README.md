@@ -8,9 +8,9 @@ Incoming internet traffic is protected by **Amazon CloudFront** and **AWS WAF**,
 
 # AWS Secure Hub-and-Spoke Architecture
 
-<p align="center">
-  <img src=""C:\Users\FreeComp\Desktop\employee\New folder\ChatGPT Image Jul 6, 2026, 06_37_50 AM.png"" >
-</p>
+# AWS Secure Hub-and-Spoke Architecture
+
+![AWS Secure Hub-and-Spoke Architecture](architecture.png)
 
 ---
 
