@@ -37,16 +37,6 @@ The entire infrastructure is deployed using Infrastructure as Code except for tw
 
 ---
 
-# 🏗 Architecture
-
-
-
-![AWS Secure Hub-and-Spoke Architecture](architecture.png)
-
-
-
----
-
 # 🌐 Network Design
 
 The infrastructure consists of two isolated Virtual Private Clouds (VPCs):
