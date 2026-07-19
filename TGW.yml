@@ -3,10 +3,6 @@ Description: Transit Gateway
 
 Resources:
 
-# ==========================================================
-# Transit Gateway
-# ==========================================================
-
   AhmedTGW:
     Type: AWS::EC2::TransitGateway
     Properties:
@@ -20,10 +16,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Ahmed-TGW
-
-# ==========================================================
-# Hub Attachment
-# ==========================================================
 
   AhmedHubTGWAttachment:
     Type: AWS::EC2::TransitGatewayAttachment
@@ -39,10 +31,6 @@ Resources:
         - Key: Name
           Value: Ahmed-hub-TGW-attach
 
-# ==========================================================
-# Spoke Attachment
-# ==========================================================
-
   AhmedSpokeTGWAttachment:
     Type: AWS::EC2::TransitGatewayAttachment
     Properties:
@@ -57,10 +45,6 @@ Resources:
         - Key: Name
           Value: Ahmed-Spoke-TGW-attach
 
-# ==========================================================
-# TGW Route Table
-# ==========================================================
-
   AhmedTGWRouteTable:
     Type: AWS::EC2::TransitGatewayRouteTable
     Properties:
@@ -69,19 +53,11 @@ Resources:
         - Key: Name
           Value: Ahmed-TGW-RT
 
-# ==========================================================
-# Hub Association
-# ==========================================================
-
   HubAssociation:
     Type: AWS::EC2::TransitGatewayRouteTableAssociation
     Properties:
       TransitGatewayAttachmentId: !Ref AhmedHubTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable
-
-# ==========================================================
-# Spoke Association
-# ==========================================================
 
   SpokeAssociation:
     Type: AWS::EC2::TransitGatewayRouteTableAssociation
@@ -89,29 +65,17 @@ Resources:
       TransitGatewayAttachmentId: !Ref AhmedSpokeTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable
 
-# ==========================================================
-# Hub Propagation
-# ==========================================================
-
   HubPropagation:
     Type: AWS::EC2::TransitGatewayRouteTablePropagation
     Properties:
       TransitGatewayAttachmentId: !Ref AhmedHubTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable
 
-# ==========================================================
-# Spoke Propagation
-# ==========================================================
-
   SpokePropagation:
     Type: AWS::EC2::TransitGatewayRouteTablePropagation
     Properties:
       TransitGatewayAttachmentId: !Ref AhmedSpokeTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable
-
-# ==========================================================
-# Route to Hub VPC
-# ==========================================================
 
   RouteToHub:
     Type: AWS::EC2::TransitGatewayRoute
@@ -123,10 +87,6 @@ Resources:
       TransitGatewayAttachmentId: !Ref AhmedHubTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable
 
-# ==========================================================
-# Route to Spoke VPC
-# ==========================================================
-
   RouteToSpoke:
     Type: AWS::EC2::TransitGatewayRoute
     DependsOn:
@@ -136,6 +96,16 @@ Resources:
       DestinationCidrBlock: 10.1.0.0/16
       TransitGatewayAttachmentId: !Ref AhmedSpokeTGWAttachment
       TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable      
+      
+  DefaultRouteToHub:
+    Type: AWS::EC2::TransitGatewayRoute
+    DependsOn:
+      - HubAssociation
+      - HubPropagation
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      TransitGatewayAttachmentId: !Ref AhmedHubTGWAttachment
+      TransitGatewayRouteTableId: !Ref AhmedTGWRouteTable  
 
 Outputs:
 
