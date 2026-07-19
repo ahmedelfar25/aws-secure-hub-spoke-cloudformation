@@ -2,9 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Ahmed Application Load Balancer
 
 Resources:
-  # ==========================================================
-  # Security Group
-  # ==========================================================
+
 
   AhmedALBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -31,9 +29,7 @@ Resources:
         - Key: Name
           Value: Ahmed-ALB-SG
 
-  # ==========================================================
-  # ALB Target Group
-  # ==========================================================
+
 
   AhmedALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
@@ -71,9 +67,7 @@ Resources:
         - Key: Name
           Value: Ahmed-ALB-TG
 
-  # ==========================================================
-  # Application Load Balancer
-  # ==========================================================
+
 
   AhmedALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -104,9 +98,7 @@ Resources:
         - Key: Name
           Value: Ahmed-ALB
 
-  # ==========================================================
-  # Listener
-  # ==========================================================
+
 
   AhmedALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -121,9 +113,6 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref AhmedALBTargetGroup
 
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
   ALBArn:
