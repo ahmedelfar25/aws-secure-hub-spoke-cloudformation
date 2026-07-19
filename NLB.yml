@@ -3,10 +3,6 @@ Description: Ahmed Internal Network Load Balancer
 
 Resources:
 
-# ==========================================================
-# NLB Target Group
-# ==========================================================
-
   AhmedNLBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -29,10 +25,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Ahmed-NLB-TG
-
-# ==========================================================
-# Network Load Balancer
-# ==========================================================
 
   AhmedNLB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -60,10 +52,6 @@ Resources:
         - Key: Name
           Value: Ahmed-NLB
 
-# ==========================================================
-# Listener
-# ==========================================================
-
   AhmedNLBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
@@ -77,9 +65,6 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref AhmedNLBTargetGroup
 
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
 
