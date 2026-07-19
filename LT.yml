@@ -9,10 +9,6 @@ Parameters:
 
 Resources:
 
-# ==========================================================
-# Application Security Group
-# ==========================================================
-
   AhmedApplicationSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -22,21 +18,15 @@ Resources:
 
       SecurityGroupIngress:
 
-# HTTP from Hub VPC (ALB -> Firewall -> TGW -> NLB -> EC2)
-
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
           CidrIp: 10.0.0.0/16
 
-# HTTPS
-
         - IpProtocol: tcp
           FromPort: 443
           ToPort: 443
           CidrIp: 10.0.0.0/16
-
-# SSH from Jump Server subnet
 
         - IpProtocol: tcp
           FromPort: 22
@@ -58,9 +48,6 @@ Resources:
         - Key: Name
           Value: Ahmed-App-SG
 
-# ==========================================================
-# Launch Template
-# ==========================================================
 
   AhmedLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
