@@ -3,10 +3,6 @@ Description: Ahmed CloudFront and AWS WAF
 
 Resources:
 
-# ==========================================================
-# WAF Web ACL
-# ==========================================================
-
   AhmedWAF:
     Type: AWS::WAFv2::WebACL
     Properties:
@@ -25,9 +21,6 @@ Resources:
 
       Rules:
 
-# ==========================================================
-# Amazon IP Reputation
-# ==========================================================
 
         - Name: AmazonIpReputation
 
@@ -46,10 +39,6 @@ Resources:
             MetricName: AmazonIpReputation
             SampledRequestsEnabled: true
 
-# ==========================================================
-# Common Rule Set
-# ==========================================================
-
         - Name: CommonRuleSet
 
           Priority: 1
@@ -66,10 +55,6 @@ Resources:
             CloudWatchMetricsEnabled: true
             MetricName: CommonRuleSet
             SampledRequestsEnabled: true
-
-# ==========================================================
-# Known Bad Inputs
-# ==========================================================
 
         - Name: KnownBadInputs
 
@@ -88,10 +73,6 @@ Resources:
             MetricName: KnownBadInputs
             SampledRequestsEnabled: true
 
-# ==========================================================
-# SQL Injection
-# ==========================================================
-
         - Name: SQLi
 
           Priority: 3
@@ -108,10 +89,6 @@ Resources:
             CloudWatchMetricsEnabled: true
             MetricName: SQLi
             SampledRequestsEnabled: true
-
-# ==========================================================
-# CloudFront Distribution
-# ==========================================================
 
   AhmedCloudFront:
     Type: AWS::CloudFront::Distribution
@@ -176,10 +153,6 @@ Resources:
           CloudFrontDefaultCertificate: true
 
         WebACLId: !GetAtt AhmedWAF.Arn
-
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
 
