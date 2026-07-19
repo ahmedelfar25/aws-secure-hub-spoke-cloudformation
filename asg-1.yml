@@ -3,10 +3,6 @@ Description: Auto Scaling Group for Ahmed Application
 
 Resources:
 
-# ==========================================================
-# Auto Scaling Group
-# ==========================================================
-
   AhmedASG:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
@@ -41,9 +37,6 @@ Resources:
           Value: Ahmed-App
           PropagateAtLaunch: true
 
-# ==========================================================
-# Scaling Policy
-# ==========================================================
 
   AhmedTargetTrackingPolicy:
     Type: AWS::AutoScaling::ScalingPolicy
@@ -60,9 +53,6 @@ Resources:
 
         TargetValue: 70
 
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
 
