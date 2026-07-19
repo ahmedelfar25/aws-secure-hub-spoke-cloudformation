@@ -3,10 +3,6 @@ Description: Spoke VPC
 
 Resources:
 
-# ==========================================================
-# Spoke VPC
-# ==========================================================
-
   SpokeVPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -16,10 +12,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Spoke-VPC
-
-# ==========================================================
-# App Subnets
-# ==========================================================
 
   AppSubnetA:
     Type: AWS::EC2::Subnet
@@ -43,10 +35,6 @@ Resources:
         - Key: Name
           Value: App-B
 
-# ==========================================================
-# TGW Subnets
-# ==========================================================
-
   TGWSubnetA:
     Type: AWS::EC2::Subnet
     Properties:
@@ -69,10 +57,6 @@ Resources:
         - Key: Name
           Value: TGW-B
 
-# ==========================================================
-# Route Tables
-# ==========================================================
-
   AppRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -93,8 +77,6 @@ Resources:
       RouteTableId: !Ref AppRouteTable
       SubnetId: !Ref AppSubnetB
 
-# ==========================================================
-
   TGWRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -114,10 +96,6 @@ Resources:
     Properties:
       RouteTableId: !Ref TGWRouteTable
       SubnetId: !Ref TGWSubnetB          
-
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
 
