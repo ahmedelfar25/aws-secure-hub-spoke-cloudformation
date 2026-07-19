@@ -8,10 +8,6 @@ Parameters:
 
 Resources:
 
-# ==========================================================
-# VPC
-# ==========================================================
-
   HubVPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -21,10 +17,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Hub-VPC
-
-# ==========================================================
-# Internet Gateway
-# ==========================================================
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -38,10 +30,6 @@ Resources:
     Properties:
       InternetGatewayId: !Ref InternetGateway
       VpcId: !Ref HubVPC
-
-# ==========================================================
-# Subnets
-# ==========================================================
 
   ALBSubnetA:
     Type: AWS::EC2::Subnet
@@ -131,10 +119,6 @@ Resources:
         - Key: Name
           Value: NAT
 
-# ==========================================================
-# Route Tables
-# ==========================================================
-
   ALBRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -223,11 +207,6 @@ Resources:
       RouteTableId: !Ref NATRouteTable
       SubnetId: !Ref NATSubnet        
 
-
-# ==========================================================
-# NAT Gateway
-# ==========================================================
-
   NATEIP:
     Type: AWS::EC2::EIP
     DependsOn: AttachGateway
@@ -245,10 +224,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Hub-NATGW
-
-# ==========================================================
-# Jump Server Security Group
-# ==========================================================
 
   JumpSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -271,10 +246,6 @@ Resources:
         - Key: Name
           Value: Jump-SG
 
-# ==========================================================
-# Jump Server
-# ==========================================================
-
   JumpServer:
     Type: AWS::EC2::Instance
     Properties:
@@ -287,10 +258,6 @@ Resources:
       Tags:
         - Key: Name
           Value: Jump-Server
-
-# ==========================================================
-# Outputs
-# ==========================================================
 
 Outputs:
 
